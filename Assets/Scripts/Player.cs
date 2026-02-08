@@ -4,46 +4,49 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speedMovement = 5;
     [SerializeField] private float _jumpForce = 10;
+    [SerializeField] private float _raycastDistance;
+
+    [SerializeField] private LayerMask _getLayerMask;
+    [SerializeField] private Transform _raycastPosition;
 
     private Rigidbody2D _rg;
-    private bool _isGrounded;
     private Vector2 _movement;
+    private Vector2 _raycastStart;
+
     private void Awake()
     {
         _rg = GetComponent<Rigidbody2D>();
+        _raycastStart = _raycastPosition.position;
     }
     void Update()
     {
         _movement.x = Input.GetAxis("Horizontal");
         _movement.y = 0;
-
-        if (Input.GetButton("Jump") && _isGrounded)
+        IsGrounded();
+        if (Input.GetButton("Jump") && IsGrounded())
         {
             _rg.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-            Debug.Log("Hump x1");
+            Debug.Log("Jump x1");
         }
-
     }
-
     private void FixedUpdate()
     {
-        _rg.linearVelocity = new Vector2(_movement.x * _speedMovement, _rg.linearVelocity.y);
+        _rg.linearVelocity = new Vector2(_movement.x * _speedMovement, _rg.linearVelocity.y);   
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool IsGrounded()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        RaycastHit2D _hit = Physics2D.Raycast(_raycastStart, Vector2.down, _raycastDistance, _getLayerMask);
+
+        if (_hit.collider)
         {
-            _isGrounded = true;
+            return true;
         }
+        return false;
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnDrawGizmos()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            _isGrounded = false;
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(_raycastStart, _raycastStart + Vector2.down * _raycastDistance);
     }
 
 
