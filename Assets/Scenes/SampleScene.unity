@@ -490,11 +490,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _speedMovement: 5
   _jumpForce: 10
-  _raycastDistance: 0.07
-  _getLayerMask:
+  _raycastGroundDistance: 0
+  _raycastEnemyDistance: 0
+  _enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 8
-  _raycastPosition: {fileID: 0}
+    m_Bits: 0
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _raycastPosition: {fileID: 2117516656}
 --- !u!50 &649798086
 Rigidbody2D:
   serializedVersion: 5

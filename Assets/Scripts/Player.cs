@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        RaycastHit2D _hit = Physics2D.Raycast(_raycastStart, Vector2.down, _raycastGroundDistance, _groundLayerMask);
+        RaycastHit2D _hit = Physics2D.Raycast(transform.position, Vector2.down, _raycastGroundDistance, _groundLayerMask);
 
         if (_hit.collider)
         {
@@ -65,9 +65,9 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(_raycastStart, _raycastStart + Vector2.down * _raycastGroundDistance);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _raycastGroundDistance);
 
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)_movement * _raycastEnemyDistance);
+      //  Gizmos.DrawLine(transform.position, transform.position + (Vector3)_movement * _raycastEnemyDistance);
     }
 
     
