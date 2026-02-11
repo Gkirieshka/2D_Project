@@ -16,10 +16,11 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _rg = GetComponent<Rigidbody2D>();
-        _raycastStart = _raycastPosition.position;
+        
     }
     void Update()
     {
+        _raycastStart = _raycastPosition.position;
         _movement.x = Input.GetAxis("Horizontal");
         _movement.y = 0;
         IsGrounded();
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
 
         if (_hit.collider)
         {
+            Debug.Log("Test");
             return true;
         }
         return false;
