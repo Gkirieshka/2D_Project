@@ -7,13 +7,16 @@ public class PlayerMovementComponent : MonoBehaviour
     
 
     private Rigidbody2D _rg;
-    private Vector2 _movement;
+    internal Vector2 _movement;
     private PlayerRaycastSystem _playerRaycastSystem;
+
+    private FlipSystem _flipSystem;
 
     private void Awake()
     {
         _rg = GetComponent<Rigidbody2D>();
         _playerRaycastSystem = GetComponentInChildren<PlayerRaycastSystem>();
+        _flipSystem = GetComponentInChildren<FlipSystem>();
 
     }
     void Update()
@@ -21,8 +24,9 @@ public class PlayerMovementComponent : MonoBehaviour
        
         _movement.x = Input.GetAxis("Horizontal");
         _movement.y = 0;
-
+        _flipSystem.Flip();
         Jump();
+
     }
     private void FixedUpdate()
     {
