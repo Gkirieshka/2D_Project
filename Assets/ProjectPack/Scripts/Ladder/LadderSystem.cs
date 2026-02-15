@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -5,7 +6,7 @@ public class LadderSystem : MonoBehaviour
 {
     // [SerializeField] GameObject _gameObject;
     [SerializeField] private TilemapCollider2D _tilemapCollider2D;
-    private PlayerMovementComponent _movementComponent;
+    private PlayerMovementComponent player;
 
 
     private Vector2 _position;
@@ -14,8 +15,8 @@ public class LadderSystem : MonoBehaviour
     
     void Start()
     {
-        _movementComponent = GetComponent<PlayerMovementComponent>();
-        _position = _movementComponent.transform.position;
+        player = GetComponent<PlayerMovementComponent>();
+        _position = player.transform.position;
     }
 
     // Update is called once per frame
@@ -26,10 +27,9 @@ public class LadderSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && Input.GetButton("Jump"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Up");
-           
+            Debug.Log("Up");          
         }
        
     }
