@@ -11,6 +11,7 @@ namespace Player
         private Rigidbody2D _rg;
         internal Vector2 _movement;
         private PlayerRaycastSystem _playerRaycastSystem;
+        private PlayerAnimation _playerAnimation;
 
         private FlipSystem _flipSystem;
 
@@ -19,13 +20,14 @@ namespace Player
             _rg = GetComponent<Rigidbody2D>();
             _playerRaycastSystem = GetComponentInChildren<PlayerRaycastSystem>();
             _flipSystem = GetComponentInChildren<FlipSystem>();
+            _playerAnimation = GetComponent<PlayerAnimation>();
 
         }
         void Update()
         {
 
             _movement.x = Input.GetAxis("Horizontal");
-            _movement.y = 0;        
+            _movement.y = 0;
             _flipSystem.Flip();
             Jump();
 
@@ -41,6 +43,12 @@ namespace Player
             {
                 _rg.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
                 Debug.Log("Jump x1");
+                _playerAnimation.AMJumpTrue();
+                return;
+            }
+            if (_playerRaycastSystem.IsGrounded())
+            {
+                _playerAnimation.AMJumpFalse();
             }
         }
     }
