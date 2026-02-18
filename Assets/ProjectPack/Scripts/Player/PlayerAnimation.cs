@@ -26,15 +26,11 @@ namespace Player
 
         internal void AMJumpTrue()
         {
-            Debug.Log($"True");
             _animatror.SetBool("bIsJump", true);
 
         }
         internal void AMJumpFalse()
         {
-            Debug.Log($"False");
-
-
             _animatror.SetBool("bIsJump", false);
 
         }

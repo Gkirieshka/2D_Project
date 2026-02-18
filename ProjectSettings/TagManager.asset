@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Box
+  - Plate
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 40479263
+    locked: 0
+  - name: 
+    uniqueID: 4095260425
     locked: 0
   m_RenderingLayers:
   - Default

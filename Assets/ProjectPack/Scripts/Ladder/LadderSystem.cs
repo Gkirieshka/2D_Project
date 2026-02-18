@@ -1,4 +1,5 @@
 using Player;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -27,9 +28,10 @@ public class LadderSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && Input.GetButton("Jump"));
         {
-            Debug.Log("Up");          
+            Debug.Log("Up");
+          //player.transform.position.y += 0.5f;
         }
        
     }

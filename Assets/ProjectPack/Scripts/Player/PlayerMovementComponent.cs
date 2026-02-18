@@ -5,7 +5,7 @@ namespace Player
     public class PlayerMovementComponent : MonoBehaviour
     {
         [SerializeField] private float _speedMovement = 5;
-        [SerializeField] private float _jumpForce = 10;
+        [SerializeField] internal float _jumpForce = 10;
 
 
         private Rigidbody2D _rg;
@@ -42,7 +42,6 @@ namespace Player
             if (Input.GetButtonDown("Jump") && _playerRaycastSystem.IsGrounded())
             {
                 _rg.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-                Debug.Log("Jump x1");
                 _playerAnimation.AMJumpTrue();
                 return;
             }
